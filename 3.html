@@ -3,12 +3,41 @@
 <head>
 <title>그림자-오늘의 코드</title>
 <meta charset="UTF-8">
+<style>
+
+  h1 {
+   border-top:1px solid black;
+   padding:40px;
+   font-size:40px;
+   display:block;
+   text-align: center;
+   margin-top: 0px;
+   margin-bottom: 0px;
+  }
+
+ .grid {
+   display:grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   border:1px solid black;
+   text-align:center;
+   height: 35px;
+   line-height:35px;
+   }
+
+  a {
+    text-decoration: none;
+    color: black;
+     }
+
+</style>
 </head>
 <body>
-  <h1><a href="index.html">Soo's container</a></h1>
-  <li><a href="1.html">오늘의 시작</a></li>
-  <li><a href="2.html">오늘의 만남</a></li>
-  <li>오늘의 코드</li>
-  <li><a href="4.html">오늘의 끝</a></li>
+  <h1><a href="index.html">Soo's Container</a></h1>
+  <div class="grid">
+  <a href="1.html" style="border-right:1px dotted black">오늘의 시작</a>
+  <a href="2.html" style="border-right:1px dotted black">오늘의 만남</a>
+  <div style="border-right:1px dotted black">오늘의 코드</div>
+  <a href="4.html">오늘의 끝</a>
+</div>
 </body>
 </html>
