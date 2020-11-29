@@ -16,6 +16,46 @@
   <a href="4.html">오늘의 끝</a>
  </div>
 
+<h3>환영합니다</h3>
+
+
+<form action="/action_page.php" method="post">
+  <div class="login">
+  <label for="uname"><b>이 름</b></label>
+  <input type="text" placeholder="Enter username" id="uname" name="uname" required>
+   <br><br>
+  <label for="psw"><b>비밀번호</b></label>
+  <input type="password" placeholder="Enter Password" id="psw" name="psw" required>
+   <br><br>
+</form>
+   <div id="but">
+
+   <button onclick="document.getElementById('id010').style.display='block'" >등 록</button>
+   <button type="submit">입 장</button>
+   <div id="id010" class="modal">
+   <span onclick="document.getElementById('id010').style.display='none'">x</span>
+ <form class="modal-content" action="/action_page.php">
+   <div class="container">
+        <h1>등 록</h1>
+        <p>간단한 절차를 통해 진행됩니다</p>
+</div>
+</div>
+</div>
+
+</form>
+    </div>
+
+
+<script>
+  var modal = document.getElementById('id010');
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+
 </body>
 
 </html>
