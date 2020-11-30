@@ -10,17 +10,28 @@
 <body>
   <h1><a href="index.html">Soo's Container</a></h1>
   <div class="grid">
-   <div style="border-right:1px dotted black" class="active">오늘의 시작</div>
-   <a href="2.html" style="border-right:1px dotted black">오늘의 만남</a>
-   <a href="3.html" style="border-right:1px dotted black">오늘의 코드</a>
+   <div style="border-right:3px solid black" class="active">오늘의 시작</div>
+   <a href="2.html" style="border-right:3px solid black">오늘의 만남</a>
+   <a href="3.html" style="border-right:3px solid black">오늘의 코드</a>
    <a href="4.html">오늘의 끝</a>
   </div>
 
 <h3>오늘의 시작</h3>
-hello photo<br>
-휴대폰으로 찍은 사진 업로드 가능하게 만들어 보자<br><br>
-comment<br>
-만들고,수정가능하고,업데이트하고, 지울 수 있는
+<img src="sunny.svg" >  <!--아침 그림 넣기-->
+<br><br>
+<h4>오늘 아침을 한 줄로 표현한다면?</h4>
+
+<hr>
+<form action="//form-result.php" target="_self">
+  <div class="datainput">
+<input type="date" name="작성일"style="width:125px; margin-right:10px;">
+<input type="text" name="한 줄글" placeholder="한 줄글 입력">
+<button type="submit" style="width:56px;">저장</button>
+</div>
+<!--input type range써서 기분수치 표현 기능 넣어도 재밌을듯-->
+<!--저장누른 후 페이지에 한 줄글 나란히 기록되게 하고, 월별로 저장된 글 보여주는거
+만들기-->
 </body>
+
 
 </html>

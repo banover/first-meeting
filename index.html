@@ -10,9 +10,9 @@
 <body>
   <h1><a href="index.html">Soo's Container</a></h1>
  <div class="grid">
-  <a href="1.html" style="border-right:1px dotted black">오늘의 시작</a>
-  <a href="2.html" style="border-right:1px dotted black">오늘의 만남</a>
-  <a href="3.html" style="border-right:1px dotted black">오늘의 코드</a>
+  <a href="1.html" style="border-right:3px solid black">오늘의 시작</a>
+  <a href="2.html" style="border-right:3px solid black">오늘의 만남</a>
+  <a href="3.html" style="border-right:3px solid black">오늘의 코드</a>
   <a href="4.html">오늘의 끝</a>
  </div>
 
@@ -21,29 +21,49 @@
 
 <form action="/action_page.php" method="post">
   <div class="login">
-  <label for="uname"><b>이 름</b></label>
-  <input type="text" placeholder="Enter username" id="uname" name="uname" required>
+  <label for="uname"><b>이 름</b></label><br>
+  <input class="box" type="text" placeholder="Enter username" id="uname" name="uname" required>
    <br><br>
-  <label for="psw"><b>비밀번호</b></label>
-  <input type="password" placeholder="Enter Password" id="psw" name="psw" required>
+  <label for="psw"><b>비밀번호</b></label><br>
+  <input class="box" type="password" placeholder="Enter Password" id="psw" name="psw" required>
    <br><br>
 </form>
    <div id="but">
 
    <button onclick="document.getElementById('id010').style.display='block'" >등 록</button>
    <button type="submit">입 장</button>
+   </div>
+   </div>
    <div id="id010" class="modal">
    <span onclick="document.getElementById('id010').style.display='none'">x</span>
  <form class="modal-content" action="/action_page.php">
    <div class="container">
         <h1>등 록</h1>
-        <p>간단한 절차를 통해 진행됩니다</p>
+        <div class="inerbox">
+
+          <input type="text" placeholder="이름" name="username" required>
+          <br><br>
+
+          <input type="password" placeholder="비밀번호" name="password" required>
 </div>
+          <p>*반드시 기억해주세요*</p>
+<div class="inerbut">
+        <button onclick="document.getElementById('id010').style.display='none'">닫기</button>
+        <button type="submit">등록 완료</button>
+      </div>
+
+
+
+
+
+
+
 </div>
+</form>
 </div>
 
-</form>
-    </div>
+
+
 
 
 <script>
@@ -55,6 +75,10 @@
   }
 </script>
 
+<div class="underword">
+<strong>내 안의 감정, 여기에 잠들다</strong>
+<hr>
+</div>
 
 </body>
 
