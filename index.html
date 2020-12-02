@@ -13,19 +13,21 @@
   <a href="1.html" style="border-right:3px solid black">오늘의 시작</a>
   <a href="2.html" style="border-right:3px solid black">오늘의 만남</a>
   <a href="3.html" style="border-right:3px solid black">오늘의 코드</a>
+  <a href="5.html" style="border-right:3px solid black">오늘의 사진</a>
   <a href="4.html">오늘의 끝</a>
  </div>
 
 <h3>환영합니다</h3>
+<img src="traffic-sign.svg">
 
-
+<br><br>
 <form action="/action_page.php" method="post">
   <div class="login">
   <label for="uname"><b>이 름</b></label><br>
-  <input class="box" type="text" placeholder="Enter username" id="uname" name="uname" required>
+  <input class="box" type="text" placeholder="이름" id="uname" name="uname" required>
    <br><br>
   <label for="psw"><b>비밀번호</b></label><br>
-  <input class="box" type="password" placeholder="Enter Password" id="psw" name="psw" required>
+  <input class="box" type="password" placeholder="비밀번호" id="psw" name="psw" required>
    <br><br>
 </form>
    <div id="but">
@@ -35,10 +37,11 @@
    </div>
    </div>
    <div id="id010" class="modal">
-   <span onclick="document.getElementById('id010').style.display='none'">x</span>
+
  <form class="modal-content" action="/action_page.php">
    <div class="container">
-        <h1>등 록</h1>
+     <span onclick="document.getElementById('id010').style.display='none'">x</span>
+        <h5>등 록</h5>
         <div class="inerbox">
 
           <input type="text" placeholder="이름" name="username" required>
@@ -47,6 +50,7 @@
           <input type="password" placeholder="비밀번호" name="password" required>
 </div>
           <p>*반드시 기억해주세요*</p>
+          <hr>
 <div class="inerbut">
         <button onclick="document.getElementById('id010').style.display='none'">닫기</button>
         <button type="submit">등록 완료</button>
@@ -59,7 +63,9 @@
 
 
 </div>
+
 </form>
+
 </div>
 
 
@@ -76,9 +82,14 @@
 </script>
 
 <div class="underword">
+  <br>
+  <strong>나의 하루</strong><br>
 <strong>내 안의 감정, 여기에 잠들다</strong>
+
 <hr>
 </div>
+<p>
+</p>
 
 </body>
 
