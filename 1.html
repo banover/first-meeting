@@ -5,6 +5,7 @@
   <title>그림자-오늘의 시작</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -24,16 +25,32 @@
 
 <hr>
 
-<form action="//form-result.php" target="_self">
+
   <div class="datainput">
-<input type="date" name="작성일"style="width:125px; margin-right:10px;">
-<input type="text" name="한 줄글" placeholder="한 줄글 입력">
-<button type="submit" style="width:56px;">저장</button>
+<input id="date" type="date" name="작성일"style="width:125px; margin-right:10px;">
+<input id="realtext" type="text" name="한 줄글" placeholder="한 줄글 입력">
+<input id="action" type="submit" value="저장" style="width:56px;" >
 </div>
+<p id="leave"></p>
+
 <!--input type range써서 기분수치 표현 기능 넣어도 재밌을듯-->
 <!--저장누른 후 페이지에 한 줄글 나란히 기록되게 하고, 월별로 저장된 글 보여주는거
 만들기-->
 </body>
+<script>
+window.onclick = function(e){
+  var id = e.target.id;
+  if (id === 'action')
+  { var txt = document.getElementById('realtext');
+  var txt = txtbox.value;
+    $("#leave").append( txt + '<br>' );
+    $(txtbox).val('');
+    }
+  }
+  var a =[];
+  a.push(txt);
+
+</script>
 
 
 </html>
