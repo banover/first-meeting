@@ -23,6 +23,7 @@
 <br><br>
 <h4>오늘 아침을 한 줄로 표현한다면?</h4>
 
+
 <hr>
 
 <a href="writing.html">기록하기</a>
@@ -31,36 +32,15 @@ $oneline = scandir('./data');
 if (count($oneline)>=3){ ?>
 <a href="correct.php>">수정하기</a> <?php } ?>
 
-<form action="corrected_date.php" method="post">
-<input type="date" name="date2">
-<input type="hidden" value="noway">
-<input type="submit" value="선택">
 
-</form>
-<br>
-
-
-
-<!--<form action="correct_process.php" method="post">
-
-
-
-
-
-
+<form action="correct_process.php" method="post">
   <div class="datainput">
-  <input id="date" type="date" name="date"style="width:125px; margin-right:10px;" value="">
-  <input id="realtext" type="text" name="description" placeholder="한 줄글 입력" >
+  <input id="date" type="date" name="date" style="width:125px; margin-right:10px;" value="<?php echo $_POST['date2'];?>">
+  <input id="realtext" type="text" name="description" value="<?php echo file_get_contents("data/".$_POST['date2']);?>">
   <input id="action" type="submit" value="저장" style="width:56px;" >
 </div>
-
-</form>-->
-
-
-
-
-
-
+<br>
+</form>
 <?php
 
 $oneline = scandir('./data');
@@ -81,10 +61,6 @@ $i=$i+1;
 }
 
 ?>
-
-
-
-
 
 
 

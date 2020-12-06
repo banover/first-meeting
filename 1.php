@@ -26,9 +26,12 @@
 <hr>
 
 <a href="writing.html">기록하기</a>
-<?php if(isset($_GET['date'])){ ?>
-<a href="correct.php?date=<?=$_GET['date']?>">수정하기</a>
-<?php } ?>
+
+<?php
+$oneline = scandir('./data');
+if (count($oneline)>=3){ ?>
+<a href="correct.php">수정하기</a> <?php } ?>
+
 <br>
 <?php
 $oneline = scandir('./data');
