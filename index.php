@@ -4,7 +4,7 @@
 <head>
  <title>그림자</title>
  <meta charset="UTF-8">
- <link rel="stylesheet" href="style.css">
+ <link rel='stylesheet' type='text/css' href='style.php' />
 </head>
 
 <body>

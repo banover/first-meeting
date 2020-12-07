@@ -4,7 +4,7 @@
 <head>
   <title>그림자-오늘의 시작</title>
   <meta charset="utf-8">
-  <link rel='stylesheet' type='text/css' href='style.php' />
+  <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
@@ -27,21 +27,48 @@
 
 <a href="writing.html">기록하기</a>
 
-<form action="writing_process.php" method="post">
-  <div class="datainput">
-<input id="date" type="date" name="date"style="width:125px; margin-right:10px;">
-<input id="realtext" type="text" name="description" placeholder="한 줄글 입력" >
-<input id="action" type="submit" value="저장" style="width:56px;" >
-</div>
+<?php
+$oneline = scandir('./data');
+if (count($oneline)>=3){ ?>
+<a href="correct.php">수정하기</a> <?php } ?>
+
+<?php
+$oneline = scandir('./data');
+if (count($oneline)>=3){ ?>
+<a href="delete.php">삭제하기</a> <?php } ?>
+
+
+<form action="delete_process.php" method="post">
+<input type="date" name="date3">
+<input type="hidden" value="noway">
+<input type="submit" value="선택">
+
 </form>
 
 
 
-<!--input type range써서 기분수치 표현 기능 넣어도 재밌을듯-->
-<!--저장누른 후 페이지에 한 줄글 나란히 기록되게 하고, 월별로 저장된 글 보여주는거
-만들기-->
+<br>
+<?php
+$oneline = scandir('./data');
+$i = 0;
+
+while ($i<count($oneline)){
+  if($oneline[$i] != '.'){
+    if($oneline[$i] != '..'){
+
+echo $oneline[$i];
+echo file_get_contents("data/".$oneline[$i]);
+echo '<br>';
+
+
+
+
+
+}
+}
+$i=$i+1;
+}
+
+?>
 </body>
-
-
-
 </html>
