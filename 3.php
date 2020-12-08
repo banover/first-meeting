@@ -7,23 +7,23 @@
  <link rel='stylesheet' type='text/css' href='style.php' />
  <?php
  function writing(){
-  ?> <a href="writing.html">기록하기</a><?
+  ?> <a href="writing3.php">기록하기</a><?
  }
 
  function updating(){
- $oneline = scandir('./data');
+ $oneline = scandir('./data3');
  if (count($oneline)>=3){ ?>
- <a href="correct.php">수정하기</a> <?php }
+ <a href="correct3.php">수정하기</a> <?php }
  }
 
  function deleting(){
- $oneline = scandir('./data');
+ $oneline = scandir('./data3');
  if (count($oneline)>=3){ ?>
- <a href="delete.php">삭제하기</a> <?php }
+ <a href="delete3.php">삭제하기</a> <?php }
  }
 
  function record(){
- $oneline = scandir('./data');
+ $oneline = scandir('./data3');
  $i = 0;
 
  while ($i<count($oneline)){
@@ -33,7 +33,7 @@
  echo "<li><strong>";
  echo $oneline[$i];
  echo "&nbsp;&nbsp";
- echo file_get_contents("data/".$oneline[$i]);
+ echo file_get_contents("data3/".$oneline[$i]);
  echo "</strong></li>";
  echo '<br>';
  echo "</ul>";
@@ -61,13 +61,23 @@
 <img src="binary-code.svg"> <!--코에 관련된 사진 넣기-->
 <br><br>
 <h4>오늘의 코드를 한 줄로 표현한다면?</h4>
-<hr>
-<form action="//form-result.php" target="_self">
-  <div class="datainput">
-<input type="date" name="작성일"style="width:125px; margin-right:10px;">
-<input type="text" name="한 줄글" placeholder="한 줄글 입력">
-<button type="submit" style="width:56px;">저장</button>
+
+<hr class="uline">
+<div class="smallmenu">
+  <?php writing();?>
+
+  <?php updating();?>
+
+  <?php deleting();?>
+
+
 </div>
+<hr class="uline">
+
+<div class="oneline">
+<?php record();?>
+</div>
+
 </body>
 
 </html>

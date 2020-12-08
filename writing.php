@@ -74,41 +74,27 @@
 </div>
 <hr class="uline">
 
-<form action="corrected_date.php" method="post">
-<div class="corbut">
-<input type="date" name="date2">
-<input type="hidden" value="noway">
-<input type="submit" value="선택">
-</div>
-
-</form>
-<br>
-
-
-
-<!--<form action="correct_process.php" method="post">
-
-
-
-
-
-
+<form action="writing_process.php" method="post">
   <div class="datainput">
-  <input id="date" type="date" name="date"style="width:125px; margin-right:10px;" value="">
-  <input id="realtext" type="text" name="description" placeholder="한 줄글 입력" >
-  <input id="action" type="submit" value="저장" style="width:56px;" >
+<input id="date" type="date" name="date"style="width:125px; margin-right:10px;">
+<input id="realtext" type="text" name="description" placeholder="한 줄글 입력" >
+<input id="action" type="submit" value="저장" style="width:56px;" >
 </div>
-
-</form>-->
-
-
-
-
+</form>
 
 <div class="oneline">
 <?php record();?>
 
+
+
 </div>
 
+
+<!--input type range써서 기분수치 표현 기능 넣어도 재밌을듯-->
+<!--저장누른 후 페이지에 한 줄글 나란히 기록되게 하고, 월별로 저장된 글 보여주는거
+만들기-->
 </body>
+
+
+
 </html>

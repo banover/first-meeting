@@ -7,23 +7,23 @@
  <link rel='stylesheet' type='text/css' href='style.php' />
  <?php
  function writing(){
-  ?> <a href="writing.html">기록하기</a><?
+  ?> <a href="writing2.php">기록하기</a><?
  }
 
  function updating(){
  $oneline = scandir('./data2');
  if (count($oneline)>=3){ ?>
- <a href="correct.php">수정하기</a> <?php }
+ <a href="correct2.php">수정하기</a> <?php }
  }
 
  function deleting(){
- $oneline = scandir('./data');
+ $oneline = scandir('./data2');
  if (count($oneline)>=3){ ?>
- <a href="delete.php">삭제하기</a> <?php }
+ <a href="delete2.php">삭제하기</a> <?php }
  }
 
  function record(){
- $oneline = scandir('./data');
+ $oneline = scandir('./data2');
  $i = 0;
 
  while ($i<count($oneline)){
@@ -33,7 +33,7 @@
  echo "<li><strong>";
  echo $oneline[$i];
  echo "&nbsp;&nbsp";
- echo file_get_contents("data/".$oneline[$i]);
+ echo file_get_contents("data2/".$oneline[$i]);
  echo "</strong></li>";
  echo '<br>';
  echo "</ul>";
@@ -61,43 +61,23 @@
 <img src="meeting.svg"> <!--만남에 관련된 사진 넣기-->
 <br><br>
 <h4>오늘 만남을 한 줄로 표현한다면?</h4>
-<hr>
+<hr class="uline">
+<div class="smallmenu">
+  <?php writing();?>
 
-<a href="writing2.php">기록하기</a>
+  <?php updating();?>
 
-<?php
-$oneline = scandir('./data');
-if (count($oneline)>=3){ ?>
-<a href="correct2.php">수정하기</a> <?php } ?>
-
-<?php
-$oneline = scandir('./data');
-if (count($oneline)>=3){ ?>
-<a href="delete2.php">삭제하기</a> <?php } ?>
+  <?php deleting();?>
 
 
+</div>
+<hr class="uline">
 
 
 <br>
-<?php
-$oneline2 = scandir('./data2');
-$i = 0;
-
-while ($i<count($oneline2)){
-  if($oneline2[$i] != '.'){
-    if($oneline2[$i] != '..'){
-
-echo $oneline2[$i];
-echo file_get_contents("data/".$oneline2[$i]);
-echo '<br>';
-
-
-}
-}
-$i=$i+1;
-}
-
-?>
+<div class="oneline">
+<?php record();?>
+</div>
 </body>
 
 </html>

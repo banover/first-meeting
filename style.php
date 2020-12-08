@@ -230,6 +230,13 @@ line-height: 30px;
 
 }
 
+.corbut{
+
+ display: grid;
+ grid-template-columns:125px 56px;
+  justify-content: center;
+
+}
 
 
 .oneline{

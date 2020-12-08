@@ -2,29 +2,29 @@
 <html>
 
 <head>
-  <title>그림자-오늘의 시작</title>
+  <title>그림자-오늘의 만남</title>
   <meta charset="utf-8">
   <link rel='stylesheet' type='text/css' href='style.php' />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <?php
   function writing(){
-   ?> <a href="writing.php">기록하기</a><?
+   ?> <a href="writing2.php">기록하기</a><?
   }
 
   function updating(){
-  $oneline = scandir('./data');
+  $oneline = scandir('./data2');
   if (count($oneline)>=3){ ?>
-  <a href="correct.php">수정하기</a> <?php }
+  <a href="correct2.php">수정하기</a> <?php }
   }
 
   function deleting(){
-  $oneline = scandir('./data');
+  $oneline = scandir('./data2');
   if (count($oneline)>=3){ ?>
-  <a href="delete.php">삭제하기</a> <?php }
+  <a href="delete2.php">삭제하기</a> <?php }
   }
 
   function record(){
-  $oneline = scandir('./data');
+  $oneline = scandir('./data2');
   $i = 0;
 
   while ($i<count($oneline)){
@@ -34,7 +34,7 @@
   echo "<li><strong>";
   echo $oneline[$i];
   echo "&nbsp;&nbsp";
-  echo file_get_contents("data/".$oneline[$i]);
+  echo file_get_contents("data2/".$oneline[$i]);
   echo "</strong></li>";
   echo '<br>';
   echo "</ul>";
@@ -58,10 +58,11 @@
    <a href="4.php">오늘의 끝</a>
   </div>
 
-<h3>오늘의 시작</h3>
+<h3>오늘의 만남</h3>
 <img src="sunny.svg" >  <!--아침 그림 넣기-->
 <br><br>
-<h4>오늘 아침을 한 줄로 표현한다면?</h4>
+<h4>오늘의 만남을 한 줄로 표현한다면?</h4>
+
 
 <hr class="uline">
 <div class="smallmenu">
@@ -71,44 +72,25 @@
 
   <?php deleting();?>
 
+
 </div>
 <hr class="uline">
 
-<form action="corrected_date.php" method="post">
-<div class="corbut">
-<input type="date" name="date2">
-<input type="hidden" value="noway">
-<input type="submit" value="선택">
-</div>
 
-</form>
-<br>
-
-
-
-<!--<form action="correct_process.php" method="post">
-
-
-
-
-
-
+<form action="correct_process2.php" method="post">
   <div class="datainput">
-  <input id="date" type="date" name="date"style="width:125px; margin-right:10px;" value="">
-  <input id="realtext" type="text" name="description" placeholder="한 줄글 입력" >
+  <input id="date" type="date" name="date" style="width:125px; margin-right:10px;" value="<?php echo $_POST['date'];?>">
+  <input id="realtext" type="text" name="description" value="<?php echo file_get_contents("data2/".$_POST['date']);?>">
   <input id="action" type="submit" value="저장" style="width:56px;" >
 </div>
-
-</form>-->
-
-
-
-
+<br>
+</form>
 
 <div class="oneline">
 <?php record();?>
-
 </div>
+
+
 
 </body>
 </html>

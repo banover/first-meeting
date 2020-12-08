@@ -11,10 +11,10 @@
   <h1><a href="index.php">Soo's Container</a></h1>
  <div class="grid">
   <a href="1.php" style="border-right:3px solid black">오늘의 시작</a>
-  <a href="2.html" style="border-right:3px solid black">오늘의 만남</a>
-  <a href="3.html" style="border-right:3px solid black">오늘의 코드</a>
-  <a href="5.html" style="border-right:3px solid black">오늘의 사진</a>
-  <a href="4.html">오늘의 끝</a>
+  <a href="2.php" style="border-right:3px solid black">오늘의 만남</a>
+  <a href="3.php" style="border-right:3px solid black">오늘의 코드</a>
+  <a href="5.php" style="border-right:3px solid black">오늘의 사진</a>
+  <a href="4.php">오늘의 끝</a>
  </div>
 
 <h3>환영합니다</h3>
