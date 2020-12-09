@@ -64,28 +64,19 @@
 <hr class="uline">
 
 
-<form action="5.php" method="post" enctype="multipart/form-data">
+<form action="upload.php" method="post" enctype="multipart/form-data">
 <input type="date" name="date">
-<input type="file" name="file" id="upload">
-<input type="submit" value="올리기" name="submit1">
+<input type="file" name="fileToUpload" id="fileToUpload">
+<input type="submit" value="사진 등록" name="submit">
 </form>
 
 <hr class="uline">
 
 <?php
 
-if(isset($_POST["submit1"])){
-$filepath = "images/".$_FILES["file"]["name"];
 
-if(move_uploaded_file($_FILES["file"]["tmp_name"], $filepath)){
-  echo "<img src=".$filepath." height=200 width=300/>";
+ ?>
 
-}
-else{
-  echo "오류!!";
-}
-}
-?>
 
 
 </body>
