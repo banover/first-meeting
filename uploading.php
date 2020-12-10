@@ -60,31 +60,26 @@
 <h3>오늘의 사진</h3>
 <img src="photo-camera.svg" >
 <br><br>
-<h4>오늘의 사진 한 1장은?</h4>
+<h4>오늘의 사진은?</h4>
 <hr class="uline">
-
-
 <div class="smallmenu">
 <?php uploading(); ?>
 <?php updating(); ?>
-<?php deleting();?>
-
-
-
-
+<?php deleting(); ?>
 </div>
-
-
-
-
-
-
-
-
-
 
 <hr class="uline">
 
+
+<div class="picon">
+<form action="upload.php" method="post" enctype="multipart/form-data">
+
+<input type="date" name="date">
+<input type="file" name="fileToUpload" id="fileToUpload">
+<input type="submit" value="사진 등록" name="submit">
+
+</form>
+</div>
 
 <div class="picposition">
 <?php
@@ -97,6 +92,9 @@ while ($i<count($onepicture)){
     if($onepicture[$i] != '..'){
 echo "<ul>";
 echo "<li><strong>".$onepicture[$i]."</strong></li>";
+
+
+
 echo "<img src=images/".$onepicture[$i]." height=200 width=300/>";
 echo "</ul>";
 

@@ -5,8 +5,9 @@
   <title>그림자-오늘의 사진</title>
   <meta charset="utf-8">
   <link rel='stylesheet' type='text/css' href='style.php' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <?php
-  function uploading(){
+  function writing(){
    ?> <a href="uploading.php">등록하기</a><?
   }
 
@@ -23,7 +24,7 @@
   }
 
   function record(){
-  $oneline = scandir('./data5');
+  $oneline = scandir('./data');
   $i = 0;
 
   while ($i<count($oneline)){
@@ -33,7 +34,7 @@
   echo "<li><strong>";
   echo $oneline[$i];
   echo "&nbsp;&nbsp";
-  echo file_get_contents("data5/".$oneline[$i]);
+  echo file_get_contents("data/".$oneline[$i]);
   echo "</strong></li>";
   echo '<br>';
   echo "</ul>";
@@ -50,41 +51,42 @@
 <body>
   <h1><a href="index.php">Soo's Container</a></h1>
   <div class="grid">
-  <a href="1.php" style="border-right:3px solid black">오늘의 시작</a>
-   <a href="2.php" style="border-right:3px solid black">오늘의 만남</a>
-   <a href="3.php" style="border-right:3px solid black">오늘의 코드</a>
-   <div style="border-right:3px solid black" class="active">오늘의 사진</div>
-   <a href="4.php">오늘의 끝</a>
+    <a href="1.php" style="border-right:3px solid black">오늘의 시작</a>
+     <a href="2.php" style="border-right:3px solid black">오늘의 만남</a>
+     <a href="3.php" style="border-right:3px solid black">오늘의 코드</a>
+     <div style="border-right:3px solid black" class="active">오늘의 사진</div>
+     <a href="4.php">오늘의 끝</a>
   </div>
 
 <h3>오늘의 사진</h3>
-<img src="photo-camera.svg" >
+<img src="photo-camera.svg" >  <!--아침 그림 넣기-->
 <br><br>
-<h4>오늘의 사진 한 1장은?</h4>
+<h4>오늘의 사진 1장은?</h4>
+
 <hr class="uline">
-
-
 <div class="smallmenu">
-<?php uploading(); ?>
-<?php updating(); ?>
+  <?php writing();?>
+
+  <?php updating();?>
+
 <?php deleting();?>
 
-
-
-
 </div>
-
-
-
-
-
-
-
-
-
-
 <hr class="uline">
 
+<div class="picon">
+<form action="correctpicture_process.php" method="post" enctype="multipart/form-data">
+
+<input type="date" name="date">
+<!--<input type="hidden" name="hidden" value="noway">-->
+<input type="file" name="fileToUpload" id="fileToUpload">
+<input type="submit" value="사진 재등록" name="submit">
+
+</form>
+</div>
+
+</form>
+<br>
 
 <div class="picposition">
 <?php
@@ -111,8 +113,24 @@ $i=$i+1;
 </div>
 
 
+<!--<form action="correct_process.php" method="post">
+
+
+
+
+
+
+  <div class="datainput">
+  <input id="date" type="date" name="date"style="width:125px; margin-right:10px;" value="">
+  <input id="realtext" type="text" name="description" placeholder="한 줄글 입력" >
+  <input id="action" type="submit" value="저장" style="width:56px;" >
+</div>
+
+</form>-->
+
+
+
+
 
 </body>
-
-
 </html>

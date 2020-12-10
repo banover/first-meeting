@@ -48,6 +48,7 @@
           <br><br>
 
           <input type="password" placeholder="비밀번호" name="password" required>
+<input type="email" name="email" placeholder="e-mail 주소" required>
 </div>
           <p>*반드시 기억해주세요*</p>
           <hr>

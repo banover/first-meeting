@@ -232,7 +232,7 @@ line-height: 30px;
 
 .corbut{
 
- display: grid;
+ display:grid;
  grid-template-columns:125px 56px;
   justify-content: center;
 
@@ -249,7 +249,34 @@ letter-spacing: 1px;
 
 }
 
+.picon{
+  display:grid;
+  grid-template-columns: repeat(3,auto);
+justify-content:center;
 
+}
+
+.picposition{
+
+display:grid;
+grid-template-areas:
+
+"a b c"
+"d e f"
+"g h i"
+"j k l";
+justify-content:center;
+grid-gap:20px;
+}
+
+.picposition ul{
+padding-left:0;
+
+}
+
+.picposition li{
+  margin-left:20px;
+}
 
 
 

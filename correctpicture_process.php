@@ -26,12 +26,14 @@ if(isset($_POST["submit"])){ // 'images폴더 밑에 파일이 있으면 '으로
   $target = 'images/'.$savename;
 
 
+
+
 if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target)){
  echo "";
 
+}
+}
 
-}
-}
 
 /*$onepicture = scandir('./images');
 $i = 0;

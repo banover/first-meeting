@@ -71,19 +71,19 @@
 
 
 
-
 </div>
 
-
-
-
-
-
-
-
-
-
 <hr class="uline">
+
+<div class="picon">
+<form action="deletepicture_process.php" method="post" enctype="multipart/form-data">
+
+<input type="date" name="date">
+<!--<input type="hidden" name="hidden" value="noway">-->
+<input type="submit" value="사진 삭제" name="submit">
+
+</form>
+</div>
 
 
 <div class="picposition">
