@@ -7,7 +7,7 @@
  <link rel='stylesheet' type='text/css' href='style.php' />
  <?php
  function writing(){
-  ?> <a href="writing2.php">기록하기</a><?
+  ?> <a href="writing2.php">기록하기</a><?php
  }
 
  function updating(){

@@ -1,3 +1,6 @@
+
+
+
 <!doctype html>
 <html>
 
@@ -10,7 +13,7 @@
 <body>
   <h1><a href="index.php">Soo's Container</a></h1>
  <div class="grid">
-  <a href="1.php" style="border-right:3px solid black">오늘의 시작</a>
+<a href="1.php" style="border-right:3px solid black">오늘의 시작</a>
   <a href="2.php" style="border-right:3px solid black">오늘의 만남</a>
   <a href="3.php" style="border-right:3px solid black">오늘의 코드</a>
   <a href="5.php" style="border-right:3px solid black">오늘의 사진</a>
@@ -21,24 +24,27 @@
 <img src="traffic-sign.svg">
 
 <br><br>
-<form action="/action_page.php" method="post">
+<form action="login.php" method="post">
   <div class="login">
   <label for="uname"><b>이 름</b></label><br>
-  <input class="box" type="text" placeholder="이름" id="uname" name="uname" required>
+  <input class="box" type="text" placeholder="이름" id="uname" name="username" required>
    <br><br>
   <label for="psw"><b>비밀번호</b></label><br>
-  <input class="box" type="password" placeholder="비밀번호" id="psw" name="psw" required>
+  <input class="box" type="password" placeholder="비밀번호" id="psw" name="password" required>
    <br><br>
-</form>
+
    <div id="but">
 
    <button onclick="document.getElementById('id010').style.display='block'" >등 록</button>
    <button type="submit">입 장</button>
+
    </div>
    </div>
+   </form>
+
    <div id="id010" class="modal">
 
- <form class="modal-content" action="/action_page.php">
+ <form class="modal-content" action="register.php" method="post">
    <div class="container">
      <span onclick="document.getElementById('id010').style.display='none'">x</span>
         <h5>등 록</h5>
@@ -48,7 +54,7 @@
           <br><br>
 
           <input type="password" placeholder="비밀번호" name="password" required>
-<input type="email" name="email" placeholder="e-mail 주소" required>
+<input type="password" name="confirm_password" placeholder="비밀번호 확인" required>
 </div>
           <p>*반드시 기억해주세요*</p>
           <hr>

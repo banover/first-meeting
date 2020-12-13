@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <?php
   function writing(){
-   ?> <a href="writing2.php">기록하기</a><?
+   ?> <a href="writing2.php">기록하기</a><?php
   }
 
   function updating(){

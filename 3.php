@@ -7,14 +7,14 @@
  <link rel='stylesheet' type='text/css' href='style.php' />
  <?php
  function writing(){
-  ?> <a href="writing3.php">기록하기</a><?
+  ?> <a href="writing3.php">기록하기</a><?php
  }
 
  function updating(){
  $oneline = scandir('./data3');
- if (count($oneline)>=3){ ?>
+ if (count($oneline)>=3) { ?>
  <a href="correct3.php">수정하기</a> <?php }
- }
+}
 
  function deleting(){
  $oneline = scandir('./data3');

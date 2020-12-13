@@ -6,16 +6,17 @@
   <meta charset="utf-8">
   <link rel='stylesheet' type='text/css' href='style.php' />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <?php
 function writing(){
- ?> <a href="writing.php">기록하기</a><?
+ ?> <a href="writing.php">기록하기</a><?php
 }
 
 function updating(){
 $oneline = scandir('./data');
-if (count($oneline)>=3){ ?>
-<a href="correct.php">수정하기</a> <?php }
+if(count($oneline)>=3){ ?><a href="correct.php">수정하기</a> <?php }
 }
+
 
 function deleting(){
 $oneline = scandir('./data');

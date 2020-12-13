@@ -7,7 +7,7 @@
   <link rel='stylesheet' type='text/css' href='style.php' />
   <?php
   function uploading(){
-   ?> <a href="uploading.php">등록하기</a><?
+   ?> <a href="uploading.php">등록하기</a><?php
   }
 
   function updating(){
