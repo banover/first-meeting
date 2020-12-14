@@ -1,19 +1,19 @@
 <?php
 // Initialize the session
-session_start();
+session_start();  //지워도 되지 않나?
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+//if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
-    header('location: welcome.php');
-    exit;
-}
+//    header('location: welcome.php');
+//    exit;
+//}
 
 // Include config file
 require_once "config.php";
 
 // Define variables and initialize with empty values
-$username = $password = "";//////////////////////////////////////////////
+$username = $password = "";
 $username_err = $password_err = "";
 
 // Processing form data when form is submitted
@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["username"]))){
         $username_err = "이름을 입력해 주세요";
     } else{
-        $username = trim($_POST["username"]);///////////////////////////////////
+        $username = trim($_POST["username"]);
     }
 
     // Check if password is empty
@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_bind_param($stmt, "s", $param_username);
 
             // Set parameters
-            $param_username = $username;////////////////////////////////////////////
+             $param_username = $username;
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;
+                            $_SESSION["username"] = $param_username;
 
 
                         header('location: welcome.php');

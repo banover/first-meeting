@@ -20,17 +20,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </head>
 
 <body>
-  <h1><a href="index.php">Soo's Container</a></h1>
+   <input class="logoutbut" type="button" onclick="location.href='logout.php';" value="Log Out">
+    <h1><a href="index.php">Soo's Container</a></h1>
+
  <div class="grid">
 <a href="1.php" style="border-right:3px solid black">오늘의 시작</a>
   <a href="2.php" style="border-right:3px solid black">오늘의 만남</a>
   <a href="3.php" style="border-right:3px solid black">오늘의 코드</a>
   <a href="5.php" style="border-right:3px solid black">오늘의 사진</a>
   <a href="4.php">오늘의 끝</a>
- </div>
+   </div>
 
-<h3>어서오세요,<?php echo htmlspecialchars($_SESSION["username"]); ?>님</h3> <!-- 어서오세요, 누구 님 오늘의 기록을 기다립니<-->
-<img src="traffic-sign.svg">
+
+<h3 class="welcomeword">어서오세요,&nbsp;<u><?php echo htmlspecialchars($_SESSION["username"]);?></u>님<br>오늘의 기록을 기다립니다!</h3> <!-- 어서오세요, 누구 님 오늘의 기록을 기다립니<-->
+
+<img src="writing.svg">
 
 <br><br>
 

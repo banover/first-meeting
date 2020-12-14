@@ -13,20 +13,35 @@ header("content-type: text/css; charset: utf-8");
 
    }
 
-
-  .grid {
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    border:3px solid black;
-    text-align:center;
-    height: 35px;
-    line-height:35px;
-    text-shadow:5px 7px 10px pink;
-    border-bottom:0px;
-    font-weight:bold;
-    font-size:22px;
-
+   .welcomeword u{
+     text-shadow:10px 10px 20px pink;
    }
+
+ .welcomeword{
+line-height:1.8;
+
+ }
+
+   .logoutbut{
+margin-left:700px; <!--수정필요(위치)-->
+   }
+
+
+   .grid {
+display:grid;
+grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   border:3px solid black;
+   text-align:center;
+   height: 35px;
+   line-height:35px;
+   text-shadow:5px 7px 10px pink;
+   border-bottom:0px;
+   font-weight:bold;
+   font-size:22px;
+ }
+
+
+
 
 
 
