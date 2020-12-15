@@ -1,35 +1,77 @@
 <?php
-require_once "config.php"
+require_once "config.php";
+
+$author = $date = $description = "";
+
 session_start();
-if(isset($_SESSION['username'])){
 
-  if(isset($_POST['date'])) && isset($_POST['description']){
-    $sql = "INSERT INTO oneline_record (author, date, description )
-    VALUES(?,?,?)";
+if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-  }else{
-    header('location:writing.php');
+//날짜중복 걷어내기 단계
+if(isset($_POST['date'])){
+
+  $sql = "SELECT id From oneline_record WHERE date = ?";
+    if($stmt = mysqli_prepare($link,$sql)){
+     mysqli_stmt_bind_param($stmt,"s",$param_date);
+      $param_date = $_POST['date'];
+
+     if(mysqli_stmt_execute($stmt)){
+         mysqli_stmt_store_result($stmt);
+       if(mysqli_stmt_num_rows($stmt) == 1){
+           echo "이미 글이 등록된 날짜입니다";
+           header('location:writing.php');
+  } else{
+
+    if(isset($_POST['date']) && isset($_SESSION['username']) && isset($_POST['description'])){
+      $date = $_POST['date'];
+      $author = $_SESSION['username'];
+   $description = $_POST['description'];
+
+
+          } else{
+            echo "날짜를 입력해주세요";
+          }
+
+
+      if(isset($date) && isset($description) && isset($author)){
+        $sql = "INSERT INTO oneline_record (author, date, description) VALUES(?, ?, ?)";
+          if($stmt = mysqli_prepare($link, $sql)){
+            mysqli_stmt_bind_param($stmt, "sss", $param_author, $param_date, $param_description);
+
+              $param_author = $author;
+              $param_date = $date;
+              $param_description = $description;
+
+              if(mysqli_stmt_execute($stmt)){
+                  header('location:/1.php');
+              } else{
+                echo"stmt실행오류";
+              }
+
+                 mysqli_stmt_close($stmt);
+              } else{
+                echo"두번째...DB로 명령문이 전달안됨";
+               }
+
+
+      }else{
+      header('location:/writing.php');
+       }
+
+  mysqli_close($link);
+
   }
 
-//여기에 날짜중복을..1) date있나? 2)있으면 $sql 작성(db서 같은 날짜거 SElECT해오기)
-//3)같은 날짜거 있으면 $date_err ="" 4) 없으면 $date=$_POST['date'];
-//위 내용을 위 두번째 if문 자리에서 검증하고 쭉 내려가면될듯..
+  } else{
+  echo"첫 execut오류";
+  }
 
+  }else{
+  echo"첫 prepare오류";
 
- if($stmt = mysqli_prepare($link, $sql)){
-   mysqli_stmt_bind_param($stmt, "sis", $param_author, $param_date, $param_description);
- }
- if(mysqli_stmt_execute($stmt)){
-   mysqli_stmt_store_result($stmt);
-  // if(mysqli_stmt_num_rows($stmt) == 1){ }//날짜겹치는건 중복돼서 안된다고 해야..
+  }
 
-  header('location:1.php');
- }
-
-} else{
-  header('location:index.php');
 }
-
-
+}
  ?>
 <!--writing_process.php 시리즈로 옮기는게 맞음(data폴더에 연결한걸 db로 연결)

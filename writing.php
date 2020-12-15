@@ -49,6 +49,7 @@
 </head>
 
 <body>
+  <input class="logoutbut" type="button" onclick="location.href='logout.php';" value="Log Out">
   <h1><a href="index.php">Soo's Container</a></h1>
   <div class="grid">
    <div style="border-right:3px solid black" class="active">오늘의 시작</div>
@@ -74,9 +75,9 @@
 </div>
 <hr class="uline">
 
-<form action="writing_process.php" method="post">
+<form action="uploadoneline.php" method="post">
   <div class="datainput">
-<input id="date" type="date" name="date"style="width:125px; margin-right:10px;">
+<input id="date" type="date" name="date" style="width:125px; margin-right:10px;">
 <input id="realtext" type="text" name="description" placeholder="한 줄글 입력" >
 <input id="action" type="submit" value="저장" style="width:56px;" >
 </div>

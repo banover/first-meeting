@@ -8,6 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <?php
+
 function writing(){
  ?> <a href="writing.php">기록하기</a><?php
 }
@@ -50,6 +51,7 @@ $i=$i+1;
 </head>
 
 <body>
+  <input class="logoutbut" type="button" onclick="location.href='logout.php';" value="Log Out">
   <h1><a href="index.php">Soo's Container</a></h1>
   <div class="grid">
    <div style="border-right:3px solid black" class="active">오늘의 시작</div>
@@ -83,7 +85,47 @@ $i=$i+1;
 
 <div class="oneline">
 
-<?php record();?>
+  <?php
+  require_once "config.php";
+  session_start();
+
+  if(isset($_SESSION["username"])){
+    $_SESSION["username"] = $user;
+      $query = "SELECT date, description FROM oneline_record WHERE author = ?";
+      $_SESSION["username"] = $author;
+        if($stmt = mysqli_prepare($stmt,$query)){
+          mysqli_stmt_bind_param($stmt,"s",$param_author);
+          $param_author = $user;
+
+           if(mysqli_stmt_execute($stmt)){
+             $result = mysql_query($query);
+               if(isset($result)){
+                  while($row= mysql_fetch_array($result)){
+                    echo $row['date'];
+                    echo $row['description']."<br>";
+               }
+             }else{
+               echo"두번째 if문 ";
+
+             }
+           }
+        }
+
+
+
+
+
+
+
+
+
+  } else{
+    echo"첫if문 오류";
+  }
+
+
+  ?>
+
 
 </div>
 </body>

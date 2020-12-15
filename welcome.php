@@ -22,7 +22,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body>
    <input class="logoutbut" type="button" onclick="location.href='logout.php';" value="Log Out">
     <h1><a href="index.php">Soo's Container</a></h1>
-
  <div class="grid">
 <a href="1.php" style="border-right:3px solid black">오늘의 시작</a>
   <a href="2.php" style="border-right:3px solid black">오늘의 만남</a>
@@ -39,28 +38,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <br><br>
 
 
-
-
-
-
-</div>
-
-</form>
-
-</div>
-
-
-
-
-
-<script>
-  var modal = document.getElementById('id010');
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-</script>
 
 <div class="underword">
   <br>
