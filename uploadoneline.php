@@ -10,9 +10,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 //날짜중복 걷어내기 단계
 if(isset($_POST['date'])){
 
-  $sql = "SELECT id From oneline_record WHERE date = ?";
+  $sql = "SELECT id From oneline_record WHERE author =? AND date = ?"; ////id - author
     if($stmt = mysqli_prepare($link,$sql)){
-     mysqli_stmt_bind_param($stmt,"s",$param_date);
+     mysqli_stmt_bind_param($stmt,"ss", $param_author,$param_date);
+      $param_author = $_SESSION['username'];
       $param_date = $_POST['date'];
 
      if(mysqli_stmt_execute($stmt)){
@@ -44,6 +45,7 @@ if(isset($_POST['date'])){
 
               if(mysqli_stmt_execute($stmt)){
                   header('location:/1.php');
+
               } else{
                 echo"stmt실행오류";
               }

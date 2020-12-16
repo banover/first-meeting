@@ -1,6 +1,6 @@
-<?php
+<?php session_start();
 // Initialize the session
-session_start();  //지워도 되지 않나?
+  //지워도 되지 않나?
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 //if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
@@ -58,12 +58,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         if(password_verify($password, $hashed_password)){
 
                             // Password is correct, so start a new session
-                            session_start();
+
 
                             // Store data in session variables
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $param_username;
+                            $_SESSION['loggedin'] = true;
+                            $_SESSION['id'] = $id;
+                            $_SESSION['username'] = $param_username;
 
 
                         header('location: welcome.php');

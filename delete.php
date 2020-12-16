@@ -49,6 +49,7 @@
 </head>
 
 <body>
+  <input class="logoutbut" type="button" onclick="location.href='logout.php';" value="Log Out">
   <h1><a href="index.php">Soo's Container</a></h1>
   <div class="grid">
    <div style="border-right:3px solid black" class="active">오늘의 시작</div>
@@ -68,17 +69,15 @@
 <div class="smallmenu">
   <?php writing();?>
 
-  <?php updating();?>
 
-  <?php deleting();?>
 
 </div>
 <hr class="uline">
 
-<form action="delete_process.php" method="post">
+<form action="deltest.php" method="post">
   <div class="corbut">
-<input type="date" name="date3">
-<input type="hidden" value="noway">
+<input type="date" name="date">
+<input type="hidden" value="">
 <input type="submit" value="선택">
 </div>
 </form>
@@ -86,7 +85,8 @@
 
 <br>
 <div class="oneline">
-<?php record();?>
+
+
 </div>
 </body>
 </html>

@@ -257,10 +257,11 @@ line-height: 30px;
 .oneline{
 
   list-style-position: outside;
-letter-spacing: 1px;
+letter-spacing: 2px;
+line-height:3;
   margin-left:480px;
   margin-right:480px;
-
+ font-size:17px;
 
 }
 

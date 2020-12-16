@@ -1,7 +1,7 @@
 <?php session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true){
     header("location: index.php");
     exit;
 }
@@ -31,7 +31,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
    </div>
 
 
-<h3 class="welcomeword">어서오세요,&nbsp;<u><?php echo htmlspecialchars($_SESSION["username"]);?></u>님<br>오늘의 기록을 기다립니다!</h3> <!-- 어서오세요, 누구 님 오늘의 기록을 기다립니<-->
+<h3 class="welcomeword">어서오세요,&nbsp;<u><?php echo htmlspecialchars($_SESSION['username']);?></u>님<br>오늘의 기록을 기다립니다!</h3> <!-- 어서오세요, 누구 님 오늘의 기록을 기다립니<-->
 
 <img src="writing.svg">
 

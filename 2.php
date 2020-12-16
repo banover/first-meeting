@@ -6,6 +6,8 @@
  <meta charset="UTF-8">
  <link rel='stylesheet' type='text/css' href='style.php' />
  <?php
+
+
  function writing(){
   ?> <a href="writing2.php">기록하기</a><?php
  }
@@ -16,11 +18,37 @@
  <a href="correct2.php">수정하기</a> <?php }
  }
 
+
  function deleting(){
- $oneline = scandir('./data2');
- if (count($oneline)>=3){ ?>
- <a href="delete2.php">삭제하기</a> <?php }
+
+   require_once "config.php";
+   session_start();
+
+
+  $sql = "SELECT id FROM oneline_record WHERE author=?";
+  if($stmt = mysqli_prepare($link,$sql)){
+    mysqli_stmt_bind_param($stmt, "s", $param_author);
+    $param_author = $_SESSION['username'];
+    if(mysqli_stmt_execute($stmt)){
+      mysqli_stmt_store_result($stmt);
+      if(mysqli_stmt_num_rows($stmt)>0){ ?>
+        <a href="delete.php">삭제하기</a> <?php
+      }else{
+        echo"numrow오류";
+      }
+      }else{
+        echo"execute오류";
+      }
+
+      }else{
+        echo"prepare오류";
+      }
+
  }
+
+
+
+
 
  function record(){
  $oneline = scandir('./data2');

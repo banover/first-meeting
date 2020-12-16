@@ -74,10 +74,10 @@
 </div>
 <hr class="uline">
 
-<form action="corrected_date.php" method="post">
+<form action=".php" method="post">
 <div class="corbut">
-<input type="date" name="date2">
-<input type="hidden" value="noway">
+<input type="date" name="date">
+<input type="hidden" value="">
 <input type="submit" value="선택">
 </div>
 
