@@ -44,6 +44,34 @@
   $i=$i+1;
   }
   }
+//
+
+
+
+function updated_oneline(){
+  session_start();
+  require_once "config.php";
+if(isset($_SESSION['username']) && isset($_POST['date'])){
+ $sql = "SELECT description FROM oneline_record WHERE author=? AND date =?";
+ if($stmt = mysqli_prepare($link,$sql)){
+   mysqli_stmt_bind_param($stmt,"ss", $param_author, $param_date);
+   $param_author = $_SESSION['username'];
+   $param_date = $_POST['date'];
+   if(mysqli_stmt_execute($stmt)){
+     mysqli_stmt_store_result($stmt);
+     mysqli_stmt_bind_result($stmt,$description);
+     if(mysqli_stmt_fetch($stmt)){
+       printf ("%s", $description);
+     }
+
+  }
+ }
+
+}
+
+}
+
+
 
    ?>
 </head>
@@ -77,10 +105,11 @@
 <hr class="uline">
 
 
-<form action="correct_process.php" method="post">
+<form action="correcttest.php" method="post">
   <div class="datainput">
-  <input id="date" type="date" name="date" style="width:125px; margin-right:10px;" value="<?php echo $_POST['date2'];?>">
-  <input id="realtext" type="text" name="description" value="<?php echo file_get_contents("data/".$_POST['date2']);?>">
+  <input id="date" type="date" name="date" style="width:125px; margin-right:10px;" value="<?php echo $_POST['date'];?>">
+  <input id="realtext" type="text" name="description" value="<?php
+  updated_oneline(); ?>">
   <input id="action" type="submit" value="저장" style="width:56px;" >
 </div>
 <br>

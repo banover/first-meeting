@@ -87,9 +87,20 @@
 
 
 <div class="picposition">
-<?php
 
-$onepicture = scandir('./images');
+<?php
+$sql = "SELECT image FROM image WHERE id=1 AND username=?"; //뭐 불러올거야
+
+
+
+
+ ?>
+
+
+
+
+
+<!-- $onepicture = scandir('./images');
 $i = 0;
 
 while ($i<count($onepicture)){
@@ -105,9 +116,9 @@ echo "</ul>";
 }
 }
 $i=$i+1;
-}
+} -->
 
-?>
+
 </div>
 
 

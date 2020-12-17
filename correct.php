@@ -74,7 +74,7 @@
 </div>
 <hr class="uline">
 
-<form action=".php" method="post">
+<form action="corrected_date.php" method="post">
 <div class="corbut">
 <input type="date" name="date">
 <input type="hidden" value="">
