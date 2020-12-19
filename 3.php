@@ -6,43 +6,89 @@
  <meta charset="UTF-8">
  <link rel='stylesheet' type='text/css' href='style.php' />
  <?php
+ require_once "config.php";
+ session_start();
+
+
  function writing(){
-  ?> <a href="writing3.php">기록하기</a><?php
+  ?> <a href="writing.php">기록하기</a><?php
  }
+
 
  function updating(){
- $oneline = scandir('./data3');
- if (count($oneline)>=3) { ?>
- <a href="correct3.php">수정하기</a> <?php }
-}
+  global $link;
+  $sql = "SELECT id FROM oneline_record WHERE author=?";
+  if($stmt = mysqli_prepare($link,$sql)){
+    mysqli_stmt_bind_param($stmt, "s", $param_author);
+    $param_author = $_SESSION['username'];
+    if(mysqli_stmt_execute($stmt)){
+      mysqli_stmt_store_result($stmt);
+      if(mysqli_stmt_num_rows($stmt)>0){ ?>
+        <a href="correct.php">수정하기</a> <?php
+      }else{
+        echo"";
+      }
+      }else{
+        echo"execute오류";
+      }
+
+      }else{
+        echo"prepare오류";
+      }
+ }
+
 
  function deleting(){
- $oneline = scandir('./data3');
- if (count($oneline)>=3){ ?>
- <a href="delete3.php">삭제하기</a> <?php }
- }
+   global $link;
+  $sql2 = "SELECT id FROM oneline_record WHERE author=?";
+  if($stmt = mysqli_prepare($link,$sql2)){
+    mysqli_stmt_bind_param($stmt, "s", $param_author);
+    $param_author = $_SESSION['username'];
+    if(mysqli_stmt_execute($stmt)){
+      mysqli_stmt_store_result($stmt);
+      if(mysqli_stmt_num_rows($stmt)>0){ ?>
+        <a href="delete.php">삭제하기</a> <?php
+      }else{
+        echo"";
+      }
+      }else{
+        echo"execute오류";
+      }
 
- function record(){
- $oneline = scandir('./data3');
- $i = 0;
+      }else{
+        echo"prepare오류";
+      }
+      }
 
- while ($i<count($oneline)){
-   if($oneline[$i] != '.'){
-     if($oneline[$i] != '..'){
- echo "<ul>";
- echo "<li><strong>";
- echo $oneline[$i];
- echo "&nbsp;&nbsp";
- echo file_get_contents("data3/".$oneline[$i]);
- echo "</strong></li>";
- echo '<br>';
- echo "</ul>";
 
- }
- }
- $i=$i+1;
- }
- }
+      function reading(){
+        global $link;
+        $sql= "SELECT date, description FROM oneline_record WHERE author =?";
+         if($stmt=mysqli_prepare($link,$sql)){
+          mysqli_stmt_bind_param($stmt,"s",$param_author);
+         $param_author = $_SESSION['username'];
+           if(mysqli_stmt_execute($stmt)){
+              mysqli_stmt_store_result($stmt);
+
+              if(mysqli_stmt_num_rows($stmt) > 0){
+                 mysqli_stmt_bind_result($stmt,$date,$description);
+
+                 while(mysqli_stmt_fetch($stmt)){
+                   echo"<li><strong>";
+                   printf ("[%s]&nbsp;&nbsp; %s \n", $date, $description);
+                   echo"</strong></li>";
+                 }
+        }else{
+
+        echo"";
+        }
+      } else{
+        echo"execute오류";
+      }
+      } else{
+        echo"prepare오류";
+      }
+      }
 
   ?>
 </head>

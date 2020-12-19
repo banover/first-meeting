@@ -7,24 +7,17 @@
  <link rel='stylesheet' type='text/css' href='style.php' />
  <?php
 
+ require_once "config.php";
+ session_start();
+
 
  function writing(){
-  ?> <a href="writing2.php">기록하기</a><?php
+  ?> <a href="writing.php">기록하기</a><?php
  }
+
 
  function updating(){
- $oneline = scandir('./data2');
- if (count($oneline)>=3){ ?>
- <a href="correct2.php">수정하기</a> <?php }
- }
-
-
- function deleting(){
-
-   require_once "config.php";
-   session_start();
-
-
+  global $link;
   $sql = "SELECT id FROM oneline_record WHERE author=?";
   if($stmt = mysqli_prepare($link,$sql)){
     mysqli_stmt_bind_param($stmt, "s", $param_author);
@@ -32,9 +25,9 @@
     if(mysqli_stmt_execute($stmt)){
       mysqli_stmt_store_result($stmt);
       if(mysqli_stmt_num_rows($stmt)>0){ ?>
-        <a href="delete.php">삭제하기</a> <?php
+        <a href="correct.php">수정하기</a> <?php
       }else{
-        echo"numrow오류";
+        echo"";
       }
       }else{
         echo"execute오류";
@@ -43,34 +36,60 @@
       }else{
         echo"prepare오류";
       }
-
  }
 
 
+ function deleting(){
+   global $link;
+  $sql2 = "SELECT id FROM oneline_record WHERE author=?";
+  if($stmt = mysqli_prepare($link,$sql2)){
+    mysqli_stmt_bind_param($stmt, "s", $param_author);
+    $param_author = $_SESSION['username'];
+    if(mysqli_stmt_execute($stmt)){
+      mysqli_stmt_store_result($stmt);
+      if(mysqli_stmt_num_rows($stmt)>0){ ?>
+        <a href="delete.php">삭제하기</a> <?php
+      }else{
+        echo"";
+      }
+      }else{
+        echo"execute오류";
+      }
+
+      }else{
+        echo"prepare오류";
+      }
+      }
 
 
+      function reading(){
+        global $link;
+        $sql= "SELECT date, description FROM oneline_record WHERE author =?";
+         if($stmt=mysqli_prepare($link,$sql)){
+          mysqli_stmt_bind_param($stmt,"s",$param_author);
+         $param_author = $_SESSION['username'];
+           if(mysqli_stmt_execute($stmt)){
+              mysqli_stmt_store_result($stmt);
 
- function record(){
- $oneline = scandir('./data2');
- $i = 0;
+              if(mysqli_stmt_num_rows($stmt) > 0){
+                 mysqli_stmt_bind_result($stmt,$date,$description);
 
- while ($i<count($oneline)){
-   if($oneline[$i] != '.'){
-     if($oneline[$i] != '..'){
- echo "<ul>";
- echo "<li><strong>";
- echo $oneline[$i];
- echo "&nbsp;&nbsp";
- echo file_get_contents("data2/".$oneline[$i]);
- echo "</strong></li>";
- echo '<br>';
- echo "</ul>";
+                 while(mysqli_stmt_fetch($stmt)){
+                   echo"<li><strong>";
+                   printf ("[%s]&nbsp;&nbsp; %s \n", $date, $description);
+                   echo"</strong></li>";
+                 }
+        }else{
 
- }
- }
- $i=$i+1;
- }
- }
+        echo"";
+        }
+      } else{
+        echo"execute오류";
+      }
+      } else{
+        echo"prepare오류";
+      }
+      }
 
   ?>
 </head>
@@ -104,7 +123,7 @@
 
 <br>
 <div class="oneline">
-<?php record();?>
+
 </div>
 </body>
 

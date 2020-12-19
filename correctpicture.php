@@ -7,7 +7,10 @@
   <link rel='stylesheet' type='text/css' href='style.php' />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <?php
-  function writing(){
+  require_once "config.php";
+  session_start();
+
+  function uploading(){
    ?> <a href="uploading.php">등록하기</a><?php
   }
 
@@ -23,27 +26,31 @@
   <a href="deletepicture.php">삭제하기</a> <?php }
   }
 
-  function record(){
-  $oneline = scandir('./data');
-  $i = 0;
 
-  while ($i<count($oneline)){
-    if($oneline[$i] != '.'){
-      if($oneline[$i] != '..'){
-  echo "<ul>";
-  echo "<li><strong>";
-  echo $oneline[$i];
-  echo "&nbsp;&nbsp";
-  echo file_get_contents("data/".$oneline[$i]);
-  echo "</strong></li>";
-  echo '<br>';
-  echo "</ul>";
+    function reading(){
+    global $link;
+    $sql = "SELECT date, image FROM image WHERE username=? ";
+    $username = $_SESSION['username'];
+    if($stmt = mysqli_prepare($link,$sql)){
+      mysqli_stmt_bind_param($stmt,"s",$param_username);
+      $param_username = $username;
+      if(mysqli_stmt_execute($stmt)){
+         mysqli_stmt_store_result($stmt);
 
-  }
-  }
-  $i=$i+1;
-  }
-  }
+           if(mysqli_stmt_num_rows($stmt) > 0){
+
+                mysqli_stmt_bind_result($stmt, $date, $image);
+
+               while(mysqli_stmt_fetch($stmt)){
+                  echo "<ul>";
+                  echo "<li><strong>".$date."</strong></li>";
+                  echo "<img src=images/".$image." height=200 width=300/>";
+                  echo "</ul>";
+               }
+            }
+          }
+        }
+      }
 
    ?>
 </head>

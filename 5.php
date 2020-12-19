@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <link rel='stylesheet' type='text/css' href='style.php' />
   <?php
+  require_once "config.php";
+  session_start();
+
   function uploading(){
    ?> <a href="uploading.php">등록하기</a><?php
   }
@@ -22,28 +25,31 @@
   <a href="deletepicture.php">삭제하기</a> <?php }
   }
 
-  function record(){
-  $oneline = scandir('./data5');
-  $i = 0;
 
-  while ($i<count($oneline)){
-    if($oneline[$i] != '.'){
-      if($oneline[$i] != '..'){
-  echo "<ul>";
-  echo "<li><strong>";
-  echo $oneline[$i];
-  echo "&nbsp;&nbsp";
-  echo file_get_contents("data5/".$oneline[$i]);
-  echo "</strong></li>";
-  echo '<br>';
-  echo "</ul>";
+    function reading(){
+    global $link;
+    $sql = "SELECT date, image FROM image WHERE username=? ";
+    $username = $_SESSION['username'];
+    if($stmt = mysqli_prepare($link,$sql)){
+      mysqli_stmt_bind_param($stmt,"s",$param_username);
+      $param_username = $username;
+      if(mysqli_stmt_execute($stmt)){
+         mysqli_stmt_store_result($stmt);
 
-  }
-  }
-  $i=$i+1;
-  }
-  }
+           if(mysqli_stmt_num_rows($stmt) > 0){
 
+                mysqli_stmt_bind_result($stmt, $date, $image);
+
+               while(mysqli_stmt_fetch($stmt)){
+                  echo "<ul>";
+                  echo "<li><strong>".$date."</strong></li>";
+                  echo "<img src=images/".$image." height=200 width=300/>";
+                  echo "</ul>";
+               }
+            }
+          }
+        }
+      }
    ?>
 </head>
 
@@ -67,7 +73,8 @@
 <div class="smallmenu">
 <?php uploading(); ?>
 <?php updating(); ?>
-<?php deleting();?>
+<?php deleting(); ?>
+
 
 
 
@@ -88,15 +95,75 @@
 
 <div class="picposition">
 
-<?php
-$sql = "SELECT image FROM image WHERE id=1 AND username=?"; //뭐 불러올거야
 
+<?php
+ reading();
+
+
+
+//     $onepicture = scandir('./images');
+//     $i = 0;
+//     while ($i<count($onepicture)){
+//       if($onepicture[$i] != '.'){
+//         if($onepicture[$i] != '..'){
+//     echo "<ul>";
+//     echo "<li><strong>".$onepicture[$i]."</strong></li>";
+//     echo "<img src=images/".$onepicture[$i]." height=200 width=300/>";
+//     echo "</ul>";
+//
+//
+//     //이미지 주소로도 사진등록 하는 기능도 추가하면 좋을 듯
+//     }
+//     }
+//     $i=$i+1;
+//     }
+//   } else{
+//     echo"gg";
+//   }
+// } else{
+//   echo"preparegg";
+// }
+
+
+
+ ?>
+<!--
+global $link;
+$sql = "SELECT date, image FROM image WHERE username=?"; //뭐 불러올거야
+$username = $_SESSION['username'];
+  if($stmt=mysqli_prepare($link,$sql)){
+    mysqli_stmt_bind_param($stmt,"s",$param_username);
+    $param_username = $username;
+
+    if(mysqli_stmt_execute($stmt)){
+      echo"gg";
+    }
+  }
+
+
+//      mysqli_stmt_store_result($stmt);
+//      mysqli_stmt_bind_result($stmt,$date,$image);
+//
+//      while(mysqli_stmt_fetch($stmt)){
+//        echo "<ul>";
+//        echo "<li><strong>";
+//        echo $date;
+//         echo "<img src=images/".$image." height=200 width=300/>";
+//         echo "</ul>";
+//      } else{"fetch오류";
+//      }
+//    } else{
+//     echo"execute 오류";
+//   }
+// } else{
+//   echo"prepare오//";
+// }
 
 
 
  ?>
 
-
+ -->
 
 
 

@@ -8,8 +8,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <?php
-require_once "config.php";
-session_start();
+require_once "config.php"; //hidden으로 오늘의 (시작,만남,코드,끝) 시리즈인 걸 post한 후 table에 따로 column(시작,만남,코드,끝)추가해서 reading할 때 column에 맞는
+session_start();           // 것을 불러오기
 
 
 function writing(){
