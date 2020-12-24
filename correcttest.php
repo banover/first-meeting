@@ -30,7 +30,7 @@ if(isset($_POST['date'])){
                          $param_date = $date;
 
                          if(mysqli_stmt_execute($stmt)){
-                            header('location:/1.php');
+                            header('location:/realindex.php?id='.$_GET['id'].'');
                        }
            }
          }

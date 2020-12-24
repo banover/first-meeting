@@ -13,7 +13,7 @@ require_once "config.php";
        if(mysqli_stmt_execute($stmt)){
           mysqli_stmt_store_result($stmt);
 
-         header('location:1.php');
+         header('location:realindex.php?id='.$_GET['id'].'');
 
        } else{
          echo"execute오류";

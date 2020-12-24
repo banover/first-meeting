@@ -121,7 +121,7 @@
 <hr class="uline">
 
 <div class="oneline">
-<?php record();?>
+<?php reading();?>
 </div>
 
 </body>

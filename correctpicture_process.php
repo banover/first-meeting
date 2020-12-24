@@ -17,7 +17,7 @@ if(isset($_POST["submit"])){
       $savename =  $_POST['date'];//.".".$ext;
       $target = 'images/'.$savename;
       move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target);
-      header('location:5.php');
+      header('location:realindex.php?id='.$_GET['id'].'');
     } else{
       echo"execute";
     }

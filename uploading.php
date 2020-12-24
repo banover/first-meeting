@@ -78,7 +78,7 @@
 
 
 <div class="picon">
-<form action="upload.php" method="post" enctype="multipart/form-data">
+<form action="upload.php?id=<?=$_GET['id']?>" method="post" enctype="multipart/form-data">
 
 <input type="date" name="date">
 <input type="file" name="fileToUpload">

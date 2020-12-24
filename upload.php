@@ -36,7 +36,7 @@ if(isset($_POST["submit"])){
         $param_date = $_POST['date'];
         $param_image = $imagefile_savename;
         if(mysqli_stmt_execute($stmt)){
-          header('location:5.php');
+          header('location:realindex.php?id='.$_GET['id']);
 
         }
       }

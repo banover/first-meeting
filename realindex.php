@@ -34,7 +34,7 @@ $menu_description_output = $row['menu_description'];
    function image_reading(){echo "";}
 
    function writing(){
-    ?> <a href="writing.php">기록하기</a><?php
+    echo '<a href="writing.php?id='.$_GET['id'].'">기록하기</a>';
    }
 
 
@@ -46,8 +46,8 @@ $menu_description_output = $row['menu_description'];
       $param_author = $_SESSION['username'];
       if(mysqli_stmt_execute($stmt)){
         mysqli_stmt_store_result($stmt);
-        if(mysqli_stmt_num_rows($stmt)>0){ ?>
-          <a href="correct.php">수정하기</a> <?php
+        if(mysqli_stmt_num_rows($stmt)>0){
+          echo '<a href="correct.php?id='.$_GET['id'].'">수정하기</a>';
         }else{
           echo"";
         }
@@ -69,8 +69,8 @@ $menu_description_output = $row['menu_description'];
       $param_author = $_SESSION['username'];
       if(mysqli_stmt_execute($stmt)){
         mysqli_stmt_store_result($stmt);
-        if(mysqli_stmt_num_rows($stmt)>0){ ?>
-          <a href="delete.php">삭제하기</a> <?php
+        if(mysqli_stmt_num_rows($stmt)>0){
+          echo '<a href="delete.php?id='.$_GET['id'].'">삭제하기</a>';
         }else{
           echo"";
         }
@@ -124,20 +124,23 @@ function reading(){ echo "";}
 if($row['record_type'] == "이미지 첨부기능"){
 
   function image_uploading(){
-   ?> <a href="uploading.php">등록하기</a><?php
+   echo '<a href="uploading.php?id='.$_GET['id'].'">등록하기</a>';
   }
 
   function image_updating(){
   $oneline = scandir('./images');
-  if (count($oneline)>=3){ ?>
-  <a href="correctpicture.php">수정하기</a> <?php }
+  if (count($oneline)>=3){
+
+  echo '<a href="correctpicture.php?id='.$_GET['id'].'">수정하기</a>';
   }
+}
 
   function image_deleting(){
   $oneline = scandir('./images');
-  if (count($oneline)>=3){ ?>
-  <a href="deletepicture.php">삭제하기</a> <?php }
+  if (count($oneline)>=3){
+    echo '<a href="deletepicture.php?id='.$_GET['id'].'">삭제하기</a>';
   }
+}
 
 
     function image_reading(){
@@ -172,13 +175,19 @@ if($row['record_type'] == "이미지 첨부기능"){
   function image_deleting(){echo "";}
   function image_reading(){echo "";}
 
+
+
+
 }
+
 }
+//realindex 초기 페이지 꾸미//////////////////////////
 }else{
   echo"";
-  $title="";
-  $menu_image_output="";
-  $menu_description_output="";
+  $title="기록을 관리해주세요";
+  $menu_image_output='<img src="document.svg">';
+  $menu_description_output="
+<strong>메뉴를 등록 또는 선택해주세요</strong>";
   function writing(){ echo "";}
   function updating(){ echo "";}
   function deleting(){ echo "";}
@@ -188,8 +197,6 @@ if($row['record_type'] == "이미지 첨부기능"){
   function image_deleting(){echo "";}
   function image_reading(){echo "";}
 }
-
-
 
 
 
@@ -245,23 +252,27 @@ if($row['record_type'] == "이미지 첨부기능"){
 
 
 <div class="underword">
-  <br>
+  <br><br>
 <strong><?=$menu_description_output?></strong>
+</div>
 <hr class="uline">
 <div class="smallmenu">
 <?php writing();?>
 <?php updating();?>
 <?php deleting();?>
-
 <?php image_uploading();?>
 <?php image_updating();?>
 <?php image_deleting();?>
 
 </div>
 <hr class="uline">
-<?php reading();?>
-<?php image_reading();?>
 
+<div class="oneline">
+<?php reading();?>
+</div>
+<div class="picposition">
+<?php image_reading();?>
+</div>
 </body>
 
 </html>

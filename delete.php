@@ -74,7 +74,7 @@
 </div>
 <hr class="uline">
 
-<form action="deltest.php" method="post">
+<form action="deltest.php?id=<?=$_GET['id']?>" method="post">
   <div class="corbut">
 <input type="date" name="date">
 <input type="hidden" value="">

@@ -16,6 +16,11 @@ $updatemenu = '<a href="updatemenu.php">메뉴 수정</a>'; //만약 등록된 �
 $deletemenu = '<a href="deletemenu.php">메뉴 삭제</a>';
 
 
+
+
+
+
+
 $sql4= "SELECT*FROM record_type";
 $result4= mysqli_query($link,$sql4);
 $select_form = '<select name="record_type">';
@@ -28,14 +33,21 @@ $select_form .= '</select>';
 
 
 
-$sql5="SELECT menu_name FROM menus WHERE username='{$_SESSION['username']}'";
-$result5=mysqli_query($link,$sql5);
-$select_form_updatemenu = '<select name="menu_name">';
-while($row=mysqli_fetch_array($result5)){
-  $select_form_updatemenu .='<option value="'.$row['menu_name'].'">'.$row['menu_name'].'</option>';
-  }
-  $select_form_updatemenu .='</select>';
 
+
+// $sql5="SELECT menu_name FROM menus WHERE username='{$_SESSION['username']}'";
+// $result5=mysqli_query($link,$sql5);
+// $select_form_updatemenu = '<select name="menu_name">';
+// while($row=mysqli_fetch_array($result5)){
+//   $select_form_updatemenu .='<option value="menu_name">'.$row['menu_name'].'</option>';
+//   }
+//   $select_form_updatemenu .='</select>';
+
+
+
+$sql6="SELECT*FROM menus WHERE menu_name='{$_POST['menu_name']}'";
+$result6=mysqli_query($link,$sql6);
+$menu_row=mysqli_fetch_array($result6);
 
 
 
@@ -65,11 +77,14 @@ while($row=mysqli_fetch_array($result5)){
 
 <p>
 
+  <form action="updatemenu_clear.php" method="post" enctype="multipart/form-data">
 
-  삭제할 메뉴를 선택해주세요.
-  <form action="deletemenu_process.php" method="post">
-  <?=$select_form_updatemenu?>
-  <input type="submit" value="메뉴선택">
+  <input type="text" name="updatemenu_name" value="<?=$menu_row['menu_name']?>"><br>
+  <input type="file" name="menu_image"><br>
+  <input type="text" name="menu_description" value="<?=$menu_row['menu_description']?>"><br>
+  <?=$select_form?><br>
+<input type="hidden" name="menu_name" value="<?=$_POST['menu_name']?>">
+  <input type="submit" name="submit" value="등록">
   </form>
 
 

@@ -75,7 +75,7 @@
 </div>
 <hr class="uline">
 
-<form action="uploadoneline.php" method="post">
+<form action="uploadoneline.php?id=<?=$_GET['id']?>" method="post">
   <div class="datainput">
 <input id="date" type="date" name="date" style="width:125px; margin-right:10px;">
 <input id="realtext" type="text" name="description" placeholder="한 줄글 입력" >

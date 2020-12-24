@@ -105,7 +105,7 @@ if(isset($_SESSION['username']) && isset($_POST['date'])){
 <hr class="uline">
 
 
-<form action="correcttest.php" method="post">
+<form action="correcttest.php?id=<?=$_GET['id']?>" method="post">
   <div class="datainput">
   <input id="date" type="date" name="date" style="width:125px; margin-right:10px;" value="<?php echo $_POST['date'];?>">
   <input id="realtext" type="text" name="description" value="<?php

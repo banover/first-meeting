@@ -9,24 +9,24 @@
   require_once "config.php";
   session_start();
 
-  function uploading(){
+  function image_uploading(){
    ?> <a href="uploading.php">등록하기</a><?php
   }
 
-  function updating(){
+  function image_updating(){
   $oneline = scandir('./images');
   if (count($oneline)>=3){ ?>
   <a href="correctpicture.php">수정하기</a> <?php }
   }
 
-  function deleting(){
+  function image_deleting(){
   $oneline = scandir('./images');
   if (count($oneline)>=3){ ?>
   <a href="deletepicture.php">삭제하기</a> <?php }
   }
 
 
-    function reading(){
+    function image_reading(){
     global $link;
     $sql = "SELECT date, image FROM image WHERE username=? ";
     $username = $_SESSION['username'];
@@ -71,9 +71,9 @@
 
 
 <div class="smallmenu">
-<?php uploading(); ?>
-<?php updating(); ?>
-<?php deleting();?>
+<?php image_uploading(); ?>
+<?php image_updating(); ?>
+<?php image_deleting();?>
 
 
 
@@ -82,7 +82,7 @@
 <hr class="uline">
 
 <div class="picon">
-<form action="deletepicture_process.php" method="post" enctype="multipart/form-data">
+<form action="deletepicture_process.php?id=<?=$_GET['id']?>" method="post" enctype="multipart/form-data">
 
 <input type="date" name="date">
 <!--<input type="hidden" name="hidden" value="noway">-->
@@ -94,25 +94,7 @@
 
 <div class="picposition">
 <?php
-
-$onepicture = scandir('./images');
-$i = 0;
-
-while ($i<count($onepicture)){
-  if($onepicture[$i] != '.'){
-    if($onepicture[$i] != '..'){
-echo "<ul>";
-echo "<li><strong>".$onepicture[$i]."</strong></li>";
-echo "<img src=images/".$onepicture[$i]." height=200 width=300/>";
-echo "</ul>";
-
-
-//이미지 주소로도 사진등록 하는 기능도 추가하면 좋을 듯
-}
-}
-$i=$i+1;
-}
-
+image_reading();
 ?>
 </div>
 

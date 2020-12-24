@@ -12,7 +12,7 @@ if(isset($_POST["submit"])){
     $param_date = $_POST['date'];
     if(mysqli_stmt_execute($stmt)){
       unlink('images/'.$imagefile_savename);
-      header('Location: /5.php');
+      header('Location: /realindex.php?id='.$_GET['id'].'');
 
     } else {
       echo"execute";
