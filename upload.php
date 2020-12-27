@@ -17,7 +17,7 @@ if(isset($_POST["submit"])){
            mysqli_stmt_store_result($stmt);
          if(mysqli_stmt_num_rows($stmt) == 1){
              echo "이미 글이 등록된 날짜입니다"; // 경고창 뜨는걸로 수정하기
-             header('location:uploading.php');
+             header('location:uploading.php?id='.$_GET['id'].'');
     } else{
 
   $target_dir = "images/";

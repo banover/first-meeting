@@ -27,6 +27,7 @@ $title = $row['menu_name'];
 $menu_image_output = '<img src="menuimages/'.$row['menu_image'].'">';
 $menu_description_output = $row['menu_description'];
  $record_type = "";
+ //////////////////////////////////////////////////////////////////한 줄 글 기<
  if($row['record_type'] == "한 줄 글 출력기능"){
    function image_uploading(){echo "";}
    function image_updating(){echo "";}
@@ -35,11 +36,6 @@ $menu_description_output = $row['menu_description'];
    function video_uploading(){echo "";}
    function video_updating(){echo "";}
    function video_deleting(){echo "";}
-
-
-
-
-
 
    function writing(){
     echo '<a href="writing.php?id='.$_GET['id'].'">기록하기</a>';
@@ -128,8 +124,9 @@ function updating(){ echo "";}
 function deleting(){ echo "";}
 function reading(){ echo "";}
 
-
+//////////////////////////////////////////////////////////이미지 첨부기능
 if($row['record_type'] == "이미지 첨부기능"){
+
   function video_uploading(){echo "";}
   function video_updating(){echo "";}
   function video_deleting(){echo "";}
@@ -179,63 +176,73 @@ if($row['record_type'] == "이미지 첨부기능"){
           }
         }
       }
-
 } else{
 
   function image_uploading(){echo "";}
   function image_updating(){echo "";}
   function image_deleting(){echo "";}
   function image_reading(){echo "";}
-
-
+/////////////////////////////////////////////////////////////////////////동영상 첨부기능
 if($row['record_type'] == "동영상 첨부기능"){
+
   function video_uploading(){
     echo '<a href=video_uploading.php?id='.$_GET['id'].'>등록하기</a>';
-  }
+    }
 
-  function video_updating(){
-    $videos = scandir('./videos');
-    if(count($videos)>=3){
-    echo '<a href=video_updating_date.php?id='.$_GET['id'].'>수정하기</a>';
+    function video_updating(){
+      $videos = scandir('./videos');
+      if(count($videos)>=3){
+      echo '<a href=video_updating_date.php?id='.$_GET['id'].'>수정하기</a>';
+      }
+    }
+
+    function video_deleting(){
+      $videos = scandir('./videos');
+      if(count($videos)>=3){
+    echo'<a href=video_deleting_date.php?id='.$_GET['id'].'>삭제하기</a>';
     }
   }
 
-  function video_deleting(){
-    $videos = scandir('./videos');
-    if(count($videos)>=3){
-  echo'<a href=video_deleting_date.php?id='.$_GET['id'].'>삭제하기</a>';
+  function video_reading(){
+  global $link;
+  $sql = "SELECT*FROM videos WHERE username = '{$_SESSION['username']}' ";
+  $result = mysqli_query($link,$sql);
+  while($row= mysqli_fetch_assoc($result)){
+
+  echo "<ul>";
+  echo "<li><strong>".$row['date']."</strong></li>";
+  echo "<video controls>";
+  echo "<source src=".$row['video_location'].">";
+  echo "</video>";
+  echo "</ul>";
+
   }
-}
+  }
 
-function video_reading(){
-global $link;
-$sql = "SELECT*FROM videos WHERE username = '{$_SESSION['username']}' ";
-$result = mysqli_query($link,$sql);
-while($row= mysqli_fetch_assoc($result)){
 
-echo "<ul>";
-echo "<li><strong>".$row['date']."</strong></li>";
-echo "<video controls>";
-echo "<source src=".$row['video_location'].">";
-echo "</video>";
-echo "</ul>";
 
-}
+
+} else{
+  function video_uploading(){echo "";}
+  function video_updating(){echo "";}
+  function video_deleting(){echo "";}
+  function video_reading(){echo "";}
 }
 
 
+
+
+
+}
 }
 
 
-}
-
-}
-//realindex 초기 페이지 꾸미//////////////////////////
 }else{
   echo"";
-  $title="<h3 class=\"welcomeword\">어서오세요,&nbsp;<u>".htmlspecialchars($_SESSION['username'])."</u>님<br>오늘의 기록을 기다립니다!</h3>";
-  $menu_image_output='<img src="writing.svg">';
-  $menu_description_output="<div class=\"underword\"><strong>메뉴를 등록 또는 선택해주세요</strong></div>";
+  $title="기록을 관리해주세요";
+  $menu_image_output='<img src="document.svg">';
+  $menu_description_output="
+<strong>메뉴를 등록 또는 선택해주세요</strong>";
   function writing(){ echo "";}
   function updating(){ echo "";}
   function deleting(){ echo "";}
@@ -249,9 +256,6 @@ echo "</ul>";
   function video_deleting(){echo "";}
   function video_reading(){echo "";}
 }
-
-
-
 
 
  ?>
@@ -268,27 +272,37 @@ echo "</ul>";
 </head>
 
 <body>
-
   <h1><a href="index.php">Soo's Container</a></h1>
-  <div class="total_menu">
  <div class="grid">
    <?=$menu?>
 
  </div>
-
- <div class="making_content">
- <?=$createmenu?><br>
- <?=$updatemenu?><br>
+ <?=$createmenu?>
+ <?=$updatemenu?>
  <?=$deletemenu?>
-</div>
-</div>
 
 
+<!--
+
+-->
+
+
+<br>
+
+
+
+<br>
 
 
 
 <h3><?= $title?></h3>
 <?=$menu_image_output?>
+
+
+
+
+
+
 
 
 <div class="underword">
@@ -303,12 +317,26 @@ echo "</ul>";
 <?php image_uploading();?>
 <?php image_updating();?>
 <?php image_deleting();?>
-<?php video_uploading();?>
-<?php video_updating();?>
-<?php video_deleting();?>
+ <?php video_uploading();?>
+ <?php video_updating();?>
+ <?php video_deleting();?>
 
 </div>
 <hr class="uline">
+
+<div class="picon">
+<form action="video_deleting_process.php?id=<?=$_GET['id']?>" method="post" enctype="multipart/form-data">
+<input type="date" name="date">
+<input type="hidden">
+<input type="submit" name="video_upload" value="삭제">
+</form>
+</div>
+
+
+
+
+
+
 
 <div class="oneline">
 <?php reading();?>
@@ -316,9 +344,8 @@ echo "</ul>";
 <div class="picposition">
 <?php image_reading();?>
 </div>
-
 <div class="videoposition">
-<?php video_reading();?>
+  <?php video_reading()?>
 </div>
 </body>
 

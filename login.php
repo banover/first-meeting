@@ -66,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION['username'] = $param_username;
 
 
-                        header('location: welcome.php');
+                        header('location: realindex.php');
 
                         } else{
                             // Display an error message if password is not valid
